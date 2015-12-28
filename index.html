@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+<link href="select2-bootstrap.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css" rel="stylesheet" />
+</head>
+
+<body>
+<input type="button" value="show dialog" id="showdialog"> 
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+
+<script>
+$(document ).ready(function() 
+{
+	$('#showdialog').click(function(){
+		showDialog();
+	});
+});
+
+function showDialog()
+{
+	 BootstrapDialog.show({
+                title: 'Show',
+                size: BootstrapDialog.SIZE_WIDE,
+                message: function (dialog) {
+                    var $message = $('<div></div>');
+                    var pageToLoad = dialog.getData('pageToLoad');
+				
+                    $message.load(pageToLoad);
+					
+                    return $message;
+                },
+                data: {
+                    'pageToLoad': 'contant.php'
+                },
+                buttons: [{
+                    label: 'Add',
+                    cssClass: 'btn-success',
+                    action: function (dialogItself)
+                    {
+                      
+                       dialogItself.close();
+                    }
+                }, {
+                    label: 'Close',
+                    cssClass: 'btn-danger',
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+}
+
+</script>
+
+
+</html>
